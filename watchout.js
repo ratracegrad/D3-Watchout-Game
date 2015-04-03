@@ -4,8 +4,8 @@ var svgContainer = d3.select("body").append("svg")
 
 function drawAsteroids() {
     var circle = svgContainer.append("circle")
-      .attr("cx", Math.floor(Math.random() * 400))
-      .attr("cy", Math.floor(Math.random() * 300))
+      .attr("cx", Math.floor(Math.random() * 900))
+      .attr("cy", Math.floor(Math.random() * 400))
       .attr("style", "fill:steelblue;")
       .attr("r", 20);
 };
