@@ -2,11 +2,21 @@
 
 /* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
-
+body{
+  margin: 0;
+  font-family: helvetica;
+  position: relative;
+}
 .text {
   font: bold 48px monospace;
 }
-
+.asteroid {
+  background-image: url('asteroid2.png');
+  background-size: 100% 100%;
+  position: absolute;
+  width:256;
+  height: 256;
+}
 .enter {
   fill: green;
 }
@@ -16,6 +26,7 @@ Feel free to use it if you like. */
 }
 
 .gameBoard{
+  background-image: url('space-background.jpg');
   width: 75%;
   height: 800;
   margin: 0 auto;
@@ -25,4 +36,41 @@ Feel free to use it if you like. */
   width: 100%;
   height: 400px;
   margin: 0 auto;
+}
+image{
+ position:absolute;
+ background: green;
+ content:url(asteroid.png);
+ height:50px;
+ width:50px;
+ top: 250px;
+ left: 925px;
+ -webkit-animation-name: rotate;
+ -webkit-animation-duration:1s;
+ -webkit-animation-iteration-count:infinite;
+ -webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes rotate {
+ from { webkit-transform: rotate(360deg); }
+ to { -webkit-transform: rotate(0deg); }
+}
+
+.test{
+ position:absolute;
+ background: green;
+ content:url(asteroid.png);
+ height:50px;
+ width:50px;
+ top: 250px;
+ left: 925px;
+ -webkit-animation-name: rotate;
+ -webkit-animation-duration:1s;
+ -webkit-animation-iteration-count:infinite;
+ -webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes rotate {
+ from { webkit-transform: rotate(360deg); }
+ to { -webkit-transform: rotate(0deg); }
 }

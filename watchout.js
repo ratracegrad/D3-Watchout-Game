@@ -7,26 +7,28 @@ window.playerScore = 0;
 function playGame(){
 
   function drawPiece(color, radius,x,y,pieceType) {
-      var circle = svgContainer.append("circle")
-        .attr("cx", Math.floor(Math.random() * 900))
-        .attr("cy", Math.floor(Math.random() * 400))
-        .attr("style", "fill:" + color)
-        .attr("class", pieceType)
-        .attr("r", 20);
+        if(pieceType === "player"){
+        var img = svgContainer.append("svg:image")
+        .attr("xlink:href", "spacecat.png")
+        .attr("x", 400)
+        .attr("y", 200)
+        .attr("width", 50)
+        .attr("height", 50);
+        }
         
 
         if(pieceType === "asteroid"){
 
+          var img = svgContainer.append("svg:image")
+            .attr("xlink:href", "asteroid2.png")
+            .attr("x", Math.floor(Math.random() * 900))
+            .attr("y", Math.floor(Math.random() * 400))
+            .attr("width", 50)
+            .attr("class", "asteroid")
+            .attr("height", 50);
           var Asteroid = function(){
-            this.circle = circle;
-            this.timeid = null;
-            // .tween('collisionDetection', function() {
-            //   var check = setInterval(innerCheckCollision.bind(this),1);
-            //   setTimeout(function() {
-            //     clearInterval(check);
-            //   }, stepInterval);
-            // })
-        
+            this.img = img;
+            this.timeid = null;        
           
           }
           Asteroid.prototype = {
@@ -37,24 +39,24 @@ function playGame(){
             start: function(){
                  this.timeid = setInterval(this._move.bind(this), 2000);
                  this.collisionID = setInterval(this._collision.bind(this), 1);
-                 //this.circle.on('tick', this._collision.bind(this));
+                 //this.img.on('tick', this._collision.bind(this));
             },
             _move: function(){
-                 this.circle.transition()
+                 this.img.transition()
                 .duration(750)
-                .attr("cx", Math.floor(Math.random() * 900))
-                .attr("cy", Math.floor(Math.random() * 400));
+                .attr("x", Math.floor(Math.random() * 900))
+                .attr("y", Math.floor(Math.random() * 400));
             },
             _change: function(){
-              this.circle.style('fill', 'black')
+              this.img.style('fill', 'black')
             },
             _collision: function(){
                 collisionClock = new Date();
                 if(collisionClock.getTime() > lastCollided + 2000){
-                  var asteroidX = this.circle.attr('cx');
-                  var playerX = player.attr('cx');
-                  var asteroidY = this.circle.attr('cy');
-                  var playerY = player.attr('cy');
+                  var asteroidX = this.img.attr('x');
+                  var playerX = player.attr('x');
+                  var asteroidY = this.img.attr('y');
+                  var playerY = player.attr('y');
 
                   if ( (Math.abs(playerX - asteroidX) <= 30) && (Math.abs(playerY - asteroidY) <= 30)){
                     var collisionTot = (parseInt(d3.select('.collisions span').text()) + 1).toString();
@@ -73,7 +75,7 @@ function playGame(){
           asteroid.start()
           return asteroid;
         }
-        return circle;
+        return img;
     }
 
   function moveAsteroid(asteroid,d, x, y, speed){
@@ -87,14 +89,12 @@ function playGame(){
 
   var drag = d3.behavior.drag()  
      .on('dragstart', function() { player.style('fill', 'red'); })
-     .on('drag', function() { player.attr('cx', d3.event.x)
-                                    .attr('cy', d3.event.y); })
+     .on('drag', function() { player.attr('x', d3.event.x)
+                                    .attr('y', d3.event.y); })
      .on('dragend', function() { player.style('fill', 'violet'); });
 
   var svgContainer = d3.select(".gameBoard").append("svg")
        .attr('class', 'box');
-       // .attr("width", 500)
-       // .attr("height", 300);
 
   var asteroidArray =[]
 
@@ -113,4 +113,3 @@ function playGame(){
 
 
 playGame();
-
