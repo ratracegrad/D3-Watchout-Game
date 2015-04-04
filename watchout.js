@@ -2,6 +2,7 @@
 window.hasCollided = false;
 window.collisionClock = new Date();
 window.lastCollided = collisionClock.getTime();
+window.playerScore = 0;
 
 function playGame(){
 
@@ -58,6 +59,8 @@ function playGame(){
                   if ( (Math.abs(playerX - asteroidX) <= 30) && (Math.abs(playerY - asteroidY) <= 30)){
                     var collisionTot = (parseInt(d3.select('.collisions span').text()) + 1).toString();
                     d3.select('.collisions span').text(function(){ return collisionTot; });
+                    playerScore = 0;
+                    d3.select('.current span').text(function(){ return playerScore; });
                     lastCollided = collisionClock.getTime();
                   }
                 }
@@ -102,6 +105,10 @@ function playGame(){
   }
 
   var player = drawPiece("violet", 20, 500, 200, "player").call(drag);
+  setInterval(function(){
+    playerScore += 100;
+    d3.select('.current span').text(function(){ return playerScore; });
+  }, 1000)
 }
 
 
