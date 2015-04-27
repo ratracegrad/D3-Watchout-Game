@@ -10,13 +10,13 @@ body{
 .text {
   font: bold 48px monospace;
 }
-.asteroid {
+/*.asteroid {
   background-image: url('asteroid2.png');
   background-size: 100% 100%;
   position: absolute;
   width:256;
   height: 256;
-}
+}*/
 .enter {
   fill: green;
 }
@@ -37,40 +37,59 @@ body{
   height: 400px;
   margin: 0 auto;
 }
-image{
+/*.asteroid{
  position:absolute;
- background: green;
  content:url(asteroid.png);
  height:50px;
  width:50px;
  top: 250px;
  left: 925px;
  -webkit-animation-name: rotate;
- -webkit-animation-duration:1s;
+ -webkit-animation-duration:5s;
  -webkit-animation-iteration-count:infinite;
  -webkit-animation-timing-function:linear;
-}
+}*/
 
-@-webkit-keyframes rotate {
- from { webkit-transform: rotate(360deg); }
+/*@-webkit-keyframes rotate {
+ from { -webkit-transform: rotate(360deg); }
  to { -webkit-transform: rotate(0deg); }
+}*/
+.asteroid{
+-webkit-animation-name: spin;
+    -webkit-animation-duration: 50000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 50000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 50000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+    
+    animation-name: spin;
+    animation-duration: 50000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
-
-.test{
- position:absolute;
- background: green;
- content:url(asteroid.png);
- height:50px;
- width:50px;
- top: 250px;
- left: 925px;
- -webkit-animation-name: rotate;
- -webkit-animation-duration:1s;
- -webkit-animation-iteration-count:infinite;
- -webkit-animation-timing-function:linear;
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(80deg); }
 }
-
-@-webkit-keyframes rotate {
- from { webkit-transform: rotate(360deg); }
- to { -webkit-transform: rotate(0deg); }
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(80deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(80deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(80deg);
+    }
 }

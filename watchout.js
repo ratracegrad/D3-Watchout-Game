@@ -15,7 +15,10 @@ function playGame(){
         .attr("width", 50)
         .attr("height", 50);
         }
-        
+//         TweenMax.to("#svg, #div", 2, {
+//   rotation:360, 
+//   transformOrigin:"50% 50%"
+});
 
         if(pieceType === "asteroid"){
 
@@ -24,7 +27,6 @@ function playGame(){
             .attr("x", Math.floor(Math.random() * 900))
             .attr("y", Math.floor(Math.random() * 400))
             .attr("width", 50)
-            .attr("class", "asteroid")
             .attr("height", 50);
           var Asteroid = function(){
             this.img = img;
@@ -37,6 +39,7 @@ function playGame(){
               clearInterval(this.collisionID)
             },
             start: function(){
+                 this.img.attr("class", "asteroid");
                  this.timeid = setInterval(this._move.bind(this), 2000);
                  this.collisionID = setInterval(this._collision.bind(this), 1);
                  //this.img.on('tick', this._collision.bind(this));
@@ -106,7 +109,7 @@ function playGame(){
 
   var player = drawPiece("violet", 20, 500, 200, "player").call(drag);
   setInterval(function(){
-    playerScore += 100;
+    playerScore += 1;
     d3.select('.current span').text(function(){ return playerScore; });
   }, 1000)
 }
